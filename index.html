@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dennis Kibiwot Mutai - Software Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a192f;
+            --bg-secondary: #112240;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --accent: #64ffda;
+            --accent-hover: #52d4b3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section - Modified for two-column layout with image */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(17, 34, 64, 0.3));
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-image-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Decorative elements */
+        .hero-decoration {
+            position: absolute;
+        }
+
+        .decoration-waves {
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 80px;
+        }
+
+        .decoration-waves svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+
+        .decoration-badge {
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            line-height: 1.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .decoration-dots {
+            bottom: 30px;
+            right: -10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .decoration-dots .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .hero-greeting {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* About Section - Modified to include image on the right */
+        .about {
+            background-color: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .about-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: sticky;
+            top: 120px;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+            border: 3px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-skills {
+            margin-top: 30px;
+        }
+
+        .about-skills h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            list-style: none;
+        }
+
+        .skills-list li {
+            color: var(--text-secondary);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skills-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .experience-card {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .experience-card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .experience-card .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Hackathons Section */
+        .hackathons {
+            background-color: var(--bg-secondary);
+        }
+
+        .hackathon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .hackathon-card {
+            background-color: var(--bg-primary);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .hackathon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+            border-color: var(--accent);
+        }
+
+        .hackathon-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .hackathon-card .date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .hackathon-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .award {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tags span {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-link {
+            padding: 15px 30px;
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-primary);
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-image-container {
+                order: -1;
+            }
+
+            .hero-image-wrapper {
+                width: 350px;
+                height: 350px;
+                padding: 25px;
+            }
+
+            .decoration-badge {
+                width: 70px;
+                height: 70px;
+                font-size: 0.6rem;
+                top: 15px;
+                right: 15px;
+            }
+
+            .decoration-waves {
+                width: 50px;
+                height: 70px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image-container {
+                position: relative;
+                top: 0;
+            }
+
+            .about-image {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--bg-secondary);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero-image-wrapper {
+                width: 300px;
+                height: 300px;
+                padding: 20px;
+            }
+
+            .decoration-badge {
+                width: 60px;
+                height: 60px;
+                font-size: 0.5rem;
+                padding: 8px;
+            }
+
+            .decoration-waves {
+                width: 40px;
+                height: 60px;
+                left: -15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">DKM</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#hackathons" class="nav-link">Hackathons</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Image -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <p class="hero-greeting">Hi, my name is</p>
+                    <h1 class="hero-title">Dennis Kibiwot Mutai</h1>
+                    <p class="hero-description">
+                        I'm a creative <span class="highlight">software developer</span> who loves turning ideas into powerful mobile applications. 
+                    </p>
+
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-secondary">View My Work</a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <!-- Decorative waves on the left -->
+                        <div class="hero-decoration decoration-waves">
+                            <svg viewBox="0 0 60 80">
+                                <path d="M10,20 Q20,15 20,25 T20,35 T20,45" stroke-linecap="round"/>
+                                <path d="M20,25 Q30,20 30,30 T30,40 T30,50" stroke-linecap="round"/>
+                                <path d="M30,30 Q40,25 40,35 T40,45 T40,55" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <!-- Circular image frame -->
+                        <div class="hero-image-circle">
+                            <!-- Replace this src with your actual image -->
+                            <img src="top.jpg" 
+                                 alt="Dennis Kibiwot Mutai" 
+                                 class="hero-image">
+                        </div>
+
+                        <!-- Decorative badge on top right -->
+                        <div class="hero-decoration decoration-badge">
+                            <div>FLUTTER</div>
+                            <div>DEVELOPER</div>
+                        </div>
+
+                        <!-- Decorative dots on bottom right -->
+                        <div class="hero-decoration decoration-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Image -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hello! I'm Dennis Kibiwot Mutai, a passionate software developer with a strong focus on mobile application 
+                        development. My journey in tech began with a curiosity about how things work, which evolved into a love 
+                        for creating solutions that make a difference.
+                    </p>
+                    <p>
+                        I specialize in <span class="highlight">Flutter development</span>, creating cross-platform applications 
+                        that are both beautiful and functional. My experience spans from working with startups to participating 
+                        in competitive hackathons, where I've consistently delivered innovative solutions.
+                    </p>
+                    <p>
+                        I'm particularly passionate about leveraging technology to solve real-world problems, especially in areas 
+                        like agriculture, transportation, and e-commerce. My goal is to build products that not only meet technical 
+                        requirements but also create meaningful impact in people's lives.
+                    </p>
+                    
+                    <div class="about-skills">
+                        <h3>Technologies & Skills:</h3>
+                        <ul class="skills-list">
+                            <li>Flutter & Dart</li>
+                            <li>.NET</li>
+                            <li>Firebase and Supabase</li>
+                            <li>RESTful APIs</li>
+                            <li>Git & Version Control</li>
+                            <li>GitHub & GitLab</li>
+                            <li>Google Maps Integration</li>
+                            <li>AWS Deployment</li>
+                            <li>Payment Integration (PayPal,Daraja APIs)</li>
+                            <li>Problem Solving</li>
+                            <li>Communication Skills</li>
+                            <li>UI/UX Design</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-image-container">
+                    <!-- Replace this src with your actual image -->
+                    <img src="about.jpg" 
+                         alt="Dennis at work" 
+                         class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h3>Developer, Attachment</h3>
+                    <p class="date">Impax Business Solution | May 2024 - Aug 2024 | Nairobi</p>
+                    <p>
+                        • Developed ERP systems using AL language<br>
+                        • Utilized Dart and Flutter to create mobile applications<br>
+                        • Used dynamic business central
+                    </p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Assistant ICT Technician and Developer</h3>
+                    <p class="date">Lemda Business Solution | Mar 2024 - Mar 2025 | Nairobi</p>
+                    <p>
+                        • Worked as a volunteer in mobile application field<br>
+                        • Supported the ICT team with troubleshooting technical issues<br>
+                        • Collaborated with senior developers to optimize application performance
+                    </p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Mobile App Developer</h3>
+                    <p class="date">BodiFi Tech Ltd | Apr 2025 - Sep 2025 | Nairobi</p>
+                    <p>
+                        • Developed an uber-like application that mostly deals with bodabodas<br>
+                        • Developed control panel to manage riders, users, verify them and pay riders<br>
+                        • Deployed the APIs to AWS for hosting
+                    </p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Mobile Developer (Freelance)</h3>
+                    <p class="date">Sep 2023 - Present</p>
+                    <p>
+                        • Developed and executed innovative mobile app called Pick and Drop<br>
+                        • Did debugging in Flutter application called Osum-emps<br>
+                        • Built an application to help farmers with the help of AI (Agriscan)<br>
+                        • Built a Fargin application to collect opinions where people vote for opinions<br>
+                        • Built a Re-trade application for Metalift Solutions which deals with selling second hand items
+                    </p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>JKUAT Hackathon - Green Surveillance</h3>
+                    <p class="date">JKUAT, Nairobi | Oct 2023 - Nov 2023</p>
+                    <p>
+                        • Built an improvised CCTV camera using phone as an emulator<br>
+                        • The project was to reduce the storage used in today's CCTV cameras<br>
+                        • Together with my team we became position 2 and secured Silver and Bronze medals
+                    </p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>DKUT Summit - AfricasTalking Challenge</h3>
+                    <p class="date">DKUT, Nyeri | Mar 2024 - Apr 2024</p>
+                    <p>
+                        • Together with my team we built security alert system simulation using Flutter<br>
+                        • Aim of the system was to detect and send messages of events to the owner<br>
+                        • We managed to become position 1 (Winner)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hackathons Section -->
+    <section id="hackathons" class="hackathons">
+        <div class="container">
+            <h2 class="section-title">Hackathons & Achievements</h2>
+            <div class="hackathon-grid">
+                <div class="hackathon-card">
+                    <h3>DKUT Summit Hackathon - AfricasTalking</h3>
+                    <p class="date">DKUT, Nyeri | Mar 2024 - Apr 2024</p>
+                    <p>
+                        Built a security alert system simulation using Flutter. The system detects and sends 
+                        messages of events to the owner in real-time.
+                    </p>
+                    <div class="award">🥇 First Position - Winner</div>
+                </div>
+
+                <div class="hackathon-card">
+                    <h3>JKUAT Hackathon - Green Surveillance</h3>
+                    <p class="date">JKUAT, Nairobi | Oct 2023 - Nov 2023</p>
+                    <p>
+                        Built an improvised CCTV camera using a phone as an emulator. The project aimed to reduce 
+                        storage used in today's CCTV cameras.
+                    </p>
+                    <div class="award">🥈 Second Position - Silver & Bronze Medal</div>
+                </div>
+
+                <div class="hackathon-card">
+                    <h3>Karatina University Startup Solutions Expo</h3>
+                    <p class="date">2024</p>
+                    <p>
+                        Participated in the university's prestigious startup solutions expo, showcasing innovative 
+                        technology solutions and entrepreneurial thinking.
+                    </p>
+                    <div class="award">🥈 Second Best Position</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>BodaBoda Ride-Sharing App</h3>
+                    <p>
+                        Uber-like application specifically designed for bodaboda services, featuring rider management, 
+                        user verification, and integrated payment systems. Includes comprehensive admin control panel.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>AWS</span>
+                        <span>.Net</span>
+                        <span>REST APIs</span>
+                        <span>Payment Integration</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Re-trade Marketplace</h3>
+                    <p>
+                        E-commerce platform for Metalift Solutions, enabling users to buy and sell second-hand items 
+                        with secure transactions and user-friendly interface.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>Payment APIs</span>
+                        <span>Firebase</span>
+                        <span>Supabase</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Agriscan - AI for Farmers</h3>
+                    <p>
+                        An AI-powered mobile application designed to help farmers with agricultural challenges, 
+                        providing intelligent insights and recommendations.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>AI/ML</span>
+                        <span>Agriculture Tech</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Pick and Drop</h3>
+                    <p>
+                        Innovative mobile logistics application facilitating efficient delivery services with 
+                        real-time tracking and seamless user experience.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>Google Maps</span>
+                        <span>Firebase</span>
+                    </div>
+                </div>                
+
+                <div class="project-card">
+                    <h3>Fargin - Opinion Voting Platform</h3>
+                    <p>
+                        Social platform for collecting and voting on public opinions, enabling democratic 
+                        decision-making and community engagement.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>Real-time Database</span>
+                        <span>Social Features</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Green Surveillance System</h3>
+                    <p>
+                        Improvised CCTV camera system using phones as emulators, significantly reducing storage 
+                        requirements for surveillance systems. Award-winning hackathon project.
+                    </p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>IOT</span>
+                        <span>Embedded Systems</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>
+                    I'm currently open to new opportunities and collaborations. Whether you have a question, 
+                    a project idea, or just want to say hi, feel free to reach out!
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:denniskibiwott2001@gmail.com" class="contact-link">Email Me</a>
+                    <a href="https://github.com/Dev-Kibiwot" class="contact-link" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/dennis-mutai254/" class="contact-link" target="_blank">LinkedIn</a>
+                    <a href="tel:+254740025607" class="contact-link">Call: +254740025607</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dennis Kibiwot Mutai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Console message for developers
+        console.log("%c👋 Hello Developer!", "font-size: 20px; font-weight: bold; color: #64ffda;");
+        console.log("%cInterested in the code? Check out my GitHub!", "font-size: 14px; color: #8892b0;");
+        console.log("%chttps://github.com/denniskibiwott2001", "font-size: 14px; color: #64ffda;");
+    </script>
+</body>
+</html>
